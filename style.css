@@ -1,0 +1,775 @@
+/* ==========================================================================
+   Agency Portfolio — design system
+   Palette: warm paper + ink + indigo accent, WP-blue / Shopify-green tags
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root {
+  --paper: #f6f5f1;
+  --paper-dim: #edeae2;
+  --ink: #10131a;
+  --ink-soft: #5b6070;
+  --line: #e2ded3;
+  --accent: #3c3ae0;
+  --accent-dark: #2d2bb0;
+  --accent-soft: #e8e7fb;
+  --wp: #2271b1;
+  --wp-soft: #e4eef6;
+  --shopify: #5e8e3e;
+  --shopify-soft: #eaf3e2;
+
+  --font-display: Arial, sans-serif;
+  --font-body: Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --max-w: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  margin: 100px 0;
+}
+
+
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+h2.section-title {
+  font-size: clamp(28px, 3.4vw, 40px);
+  margin-bottom: 18px;
+}
+
+p.section-lede {
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin-bottom: 48px;
+  font-size: 16.5px;
+}
+
+/* Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 8px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.btn-primary {
+  background: var(--ink) ;
+  color: var(--paper) !important;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgba(60, 58, 224, 0.5);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* Nav ------------------------------------------------------------------ */
+header.site-nav {
+  position: relative;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 245, 241, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--ink-soft);
+  transition: color .15s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width .2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ink);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 880px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* Hero ------------------------------------------------------------------ */
+.hero {
+  
+  overflow: hidden;
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  text-align: center;
+  justify-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 64px);
+  max-width: 22ch;
+}
+
+.hero h1 .hl {
+  color: var(--accent);
+}
+
+.hero p.lede {
+  font-size: 18.5px;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.hero .cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.hero .badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.plat-badge {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plat-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.plat-badge.wp .dot {
+  background: var(--wp);
+}
+
+.plat-badge.shopify .dot {
+  background: var(--shopify);
+}
+
+/* Trusted / logo strip --------------------------------------------------- */
+.trusted {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-dim);
+}
+
+.trusted .label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+}
+
+.logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 44px;
+}
+
+.logo-row .client {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--ink-soft);
+  opacity: 0.65;
+  transition: opacity .15s ease;
+}
+
+.logo-row .client:hover {
+  opacity: 1;
+}
+
+/* Impact / stats ---------------------------------------------------------*/
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.impact-card {
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.impact-card b {
+  font-family: var(--font-display);
+  font-size: 40px;
+  display: block;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.impact-card span {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 880px) {
+  .impact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Services (Shopify Services) --------------------------------------------*/
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 30px 26px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -22px rgba(16, 19, 26, 0.22);
+  border-color: var(--shopify);
+}
+
+.service-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--shopify-soft);
+  color: var(--shopify);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.service-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+}
+
+@media (max-width: 880px) {
+  .service-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* About ------------------------------------------------------------------*/
+.about .wrap {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-visual {
+  aspect-ratio: 4/3;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--paper-dim));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-copy p {
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  max-width: 56ch;
+}
+
+.value-list {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.value-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+
+@media (max-width: 880px) {
+  .about .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Portfolio split tiles ----------------------------------------------------*/
+.portfolio-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.split-tile {
+  position: relative;
+  border-radius: 18px;
+  padding: 44px 36px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+  border: 1px solid var(--line);
+}
+
+.split-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -24px rgba(16, 19, 26, 0.28);
+}
+
+.split-tile.wp-tile {
+  background: linear-gradient(160deg, var(--wp-soft), var(--paper));
+}
+
+.split-tile.shopify-tile {
+  background: linear-gradient(160deg, var(--shopify-soft), var(--paper));
+}
+
+.split-tile .tile-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.wp-tile .tile-tag {
+  background: var(--wp);
+  color: #fff;
+}
+
+.shopify-tile .tile-tag {
+  background: var(--shopify);
+  color: #fff;
+}
+
+.split-tile h3 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.split-tile p {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  margin-bottom: 18px;
+  max-width: 34ch;
+}
+
+.split-tile .tile-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.split-tile .tile-link .arrow {
+  transition: transform .15s ease;
+}
+
+.split-tile:hover .tile-link .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 880px) {
+  .portfolio-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Project gallery pages (wordpress-projects.html / shopify-projects.html) */
+.page-hero {
+  text-align: center;
+}
+
+.page-hero .eyebrow {
+  justify-content: center;
+}
+
+.page-hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 14px;
+}
+
+.page-hero p {
+  color: var(--ink-soft);
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -22px rgba(16, 19, 26, 0.22);
+}
+
+.project-thumb {
+  aspect-ratio: 4/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.project-thumb.wp {
+  background: var(--wp-soft);
+  color: var(--wp);
+}
+
+.project-thumb.shopify {
+  background: var(--shopify-soft);
+  color: var(--shopify);
+}
+
+.project-info {
+  padding: 15px 15px 0px;
+}
+
+.project-info .p-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.project-thumb.wp~.project-info .p-tag,
+.project-info .p-tag.wp {
+  background: var(--wp-soft);
+  color: var(--wp);
+}
+
+.project-info .p-tag.shopify {
+  background: var(--shopify-soft);
+  color: var(--shopify);
+}
+
+.project-info h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.project-info p {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.project-info a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+@media (max-width: 880px) {
+  .project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CTA banner --------------------------------------------------------------*/
+.cta-banner {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 20px;
+  padding: 60px 48px;
+  text-align: center;
+}
+
+.cta-banner h2 {
+  font-size: clamp(26px, 3.6vw, 36px);
+  margin-bottom: 14px;
+}
+
+.cta-banner p {
+  color: #b9bcc6;
+  max-width: 48ch;
+  margin: 0 auto 28px;
+}
+
+.cta-banner .btn-primary {
+  background: var(--accent);
+}
+
+.cta-banner .btn-primary:hover {
+  background: #5654f0;
+}
+.btn-1 {
+  background-color: #5e8e3e;
+}
+
+/* Footer -------------------------------------------------------------------*/
+footer {
+  border-top: 1px solid var(--line);
+  padding: 40px 0;
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+footer .foot-links {
+  display: flex;
+  gap: 20px;
+}
+
+footer .foot-links a:hover {
+  color: var(--ink);
+}
+
+/* Reveal on scroll ----------------------------------------------------------*/
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+  padding: 26px;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
